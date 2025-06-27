@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pac-Man untuk Amalia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="welcome-screen">
+            <h1>🎮 Halo Amalia! 🎮</h1>
+            <div class="instructions">
+                <p><strong>Selamat datang di Pac-Man khusus untukmu!</strong></p><br>
+                <p><strong>Cara Bermain:</strong></p>
+                <p>• Gunakan tombol panah keyboard (↑↓←→) untuk menggerakkan Pac-Man</p>
+                <p>• Di layar kecil, gunakan tombol kontrol yang tersedia</p>
+                <p>• Makan semua titik kuning untuk menang</p>
+                <p>• Hindari hantu merah - mereka akan mengejarmu!</p>
+                <p>• Game ini sudah diatur dalam mode mudah khusus untukmu!</p>
+                <p>• Ikuti petunjuk yang muncul selama permainan</p><br>
+                <p><em>Ada kejutan spesial menunggumu di akhir permainan!</em> 💌</p>
+            </div>
+            <button class="start-btn" onclick="startGame()">Mulai Permainan</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="game-container">
+            <div class="game-info">
+                <div class="score">Poin: <span id="score">0</span></div>
+                <div class="hints" id="hints">Gunakan tombol panah untuk bergerak!</div>
+            </div>
+            <canvas id="gameCanvas" width="600" height="400"></canvas>
+            
+            <!-- Desktop Controls -->
+            <div class="controls">
+                <p><strong>Kontrol:</strong> Gunakan tombol panah ↑↓←→ pada keyboard</p>
+                <p><strong>Tujuan:</strong> Makan semua titik kuning untuk menang</p>
+            </div>
+
+            <!-- Mobile Controls -->
+            <div class="mobile-controls">
+                <p><strong>Kontrol Game:</strong></p>
+                <div class="control-grid">
+                    <button class="control-btn" onmousedown="startMove('up')" onmouseup="stopMove()" ontouchstart="startMove('up')" ontouchend="stopMove()">↑</button>
+                    <button class="control-btn" onmousedown="startMove('left')" onmouseup="stopMove()" ontouchstart="startMove('left')" ontouchend="stopMove()">←</button>
+                    <button class="control-btn" onmousedown="startMove('right')" onmouseup="stopMove()" ontouchstart="startMove('right')" ontouchend="stopMove()">→</button>
+                    <button class="control-btn" onmousedown="startMove('down')" onmouseup="stopMove()" ontouchstart="startMove('down')" ontouchend="stopMove()">↓</button>
+                </div>
+                <p style="margin-top: 15px;"><strong>Tujuan:</strong> Makan semua titik kuning!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Win Modal -->
+    <div id="winModal" class="modal">
+        <div class="modal-content">
+            <h2>🎉 Selamat Amalia! 🎉</h2>
+            <p>Kamu berhasil menyelesaikan permainan!</p>
+            <p>Ada pesan khusus yang menunggumu...</p>
+            <button class="message-btn" onclick="showMessage()">Klik untuk melihat pesan</button>
+        </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <div class="letter-content">
+                <div class="letter-header">para mi conejo</div>
+                <div class="letter-body">
+                    No olvides ir al dentista para arreglar los dientes de mi conejito. No te olvides de cuidar de ti mismo. Y no te quedes despierto hasta tarde. Perdona mis errores del domingo pasado y te amo.
+                </div>
+                <div class="letter-footer">de Aldo</div>
+            </div>
+            <button class="message-btn" onclick="closeMessage()">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="gameOverModal" class="modal">
+        <div class="modal-content">
+            <h2>😔 Ups! Hantu berhasil menangkapmu</h2>
+            <p>Tidak apa-apa Amalia! Semua orang butuh latihan.</p>
+            <p>Mau coba lagi?</p>
+            <button class="retry-btn" onclick="retryGame()">Coba Lagi</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
